@@ -18,7 +18,8 @@ public class UserController {
     public UserVo add(@Valid @RequestBody UserVo userVo, BindingResult errors) {
         log.info(userVo.toString());
         if (errors.hasErrors()) {
-            errors.getAllErrors().forEach(e -> log.info(e.toString()));
+            errors.getAllErrors().forEach(e -> log.info(e.getDefaultMessage()));
+            return null;
         }
         userVo.setId("1");
         return userVo;
