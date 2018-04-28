@@ -41,11 +41,12 @@ public class ControllerExceptionHandler {
 
     /**
      * 处理所有业务异常
+     *
      * @param e
      * @return
      */
     @ExceptionHandler(BusinessException.class)
-    public Result handleBusinessException(BusinessException e){
+    public Result handleBusinessException(BusinessException e) {
         log.error("业务异常：{}", e.getMessage(), e);
 
         return ApiResult.failure(e.getMessage());
