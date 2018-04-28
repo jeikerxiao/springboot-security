@@ -2,6 +2,10 @@ package com.jeiker.security.demo.web;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jeiker.security.demo.model.vo.UserVo;
+import com.jeiker.security.demo.result.ApiResult;
+import com.jeiker.security.demo.result.ErrorMsg;
+import com.jeiker.security.demo.result.Result;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -15,25 +19,26 @@ import java.util.Date;
 public class UserController {
 
     @PostMapping
-    public UserVo add(@Valid @RequestBody UserVo userVo, BindingResult errors) {
+    public Result add(@Valid @RequestBody UserVo userVo, BindingResult errors) {
         log.info(userVo.toString());
         if (errors.hasErrors()) {
             errors.getAllErrors().forEach(e -> log.info(e.getDefaultMessage()));
-            return null;
+            String errorStr = "";
+            return ApiResult.failure(ErrorMsg.FAILURE.getCode(), errorStr);
         }
         userVo.setId("1");
-        return userVo;
+        return ApiResult.success(userVo);
     }
 
     @GetMapping("/{id:\\d+}")
     @JsonView(UserVo.SimpleView.class)
-    public UserVo get() {
+    public Result get() {
         UserVo userVo = new UserVo();
         userVo.setId("1");
         userVo.setUsername("xiao");
         userVo.setPassword("12341234");
         userVo.setBirthday(new Date());
-        return userVo;
+        return ApiResult.success(userVo);
     }
 
 }
