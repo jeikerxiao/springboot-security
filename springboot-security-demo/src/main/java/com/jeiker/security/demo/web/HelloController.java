@@ -1,5 +1,6 @@
 package com.jeiker.security.demo.web;
 
+import com.jeiker.security.demo.exception.BusinessException;
 import com.jeiker.security.demo.result.ApiResult;
 import com.jeiker.security.demo.result.ErrorMsg;
 import com.jeiker.security.demo.result.Result;
@@ -27,6 +28,6 @@ public class HelloController {
 
     @GetMapping("/test")
     public Result test() {
-        throw new NullPointerException();
+        throw new BusinessException("业务异常");
     }
 }
