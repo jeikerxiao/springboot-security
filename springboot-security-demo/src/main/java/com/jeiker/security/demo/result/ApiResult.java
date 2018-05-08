@@ -2,11 +2,27 @@ package com.jeiker.security.demo.result;
 
 public class ApiResult {
 
+    public static <T> Result<T> success() {
+        Result<T> result = new Result<>();
+        result.setCode(ErrorMsg.SUCCESS.getCode());
+        result.setMessage(ErrorMsg.SUCCESS.getMessage());
+        result.setData(null);
+        return result;
+    }
+
     public static <T> Result<T> success(T data) {
         Result<T> result = new Result<>();
         result.setCode(ErrorMsg.SUCCESS.getCode());
         result.setMessage(ErrorMsg.SUCCESS.getMessage());
         result.setData(data);
+        return result;
+    }
+
+    public static <T> Result<T> failure() {
+        Result<T> result = new Result<>();
+        result.setCode(ErrorMsg.FAILURE.getCode());
+        result.setMessage(ErrorMsg.FAILURE.getMessage());
+        result.setData(null);
         return result;
     }
 
