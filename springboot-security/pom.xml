@@ -8,9 +8,9 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>../springboot-security-core</module>
 		<module>../springboot-security-app</module>
 		<module>../springboot-security-browser</module>
-		<module>../springboot-security-core</module>
 		<module>../springboot-security-demo</module>
 	</modules>
 	
